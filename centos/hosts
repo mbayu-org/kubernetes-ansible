@@ -12,7 +12,6 @@ kubernetes-worker-nodes
 kubernetes-master-nodes
 
 [kubernetes:vars]
-# ansible_password=mobile
 ansible_ssh_user=mobile
 
 
