@@ -5,12 +5,21 @@
   - env_variables
   tasks:
   - name: Pulling images required for setting up a Kubernetes cluster
-    shell: kubeadm config images pull
+    shell: kubeadm --v=5 config images pull
+    register: output
+  
+  - name: Print output of kubeadm --v=5 config images pull
+    debug:
+      msg: " => {{ output }}"
 
   - name: Resetting kubeadm
-    shell: kubeadm reset -f
+    shell: kubeadm --v=5 reset -f
     register: output
-
+    
+  - name: Print output of kubeadm --v=5 reset -f
+    debug:
+      msg: " => {{ output }}"
+  
   - name: Initializing Kubernetes cluster
     shell: kubeadm init --apiserver-advertise-address {{ad_addr}} --pod-network-cidr={{cidr_v}}
     register: output

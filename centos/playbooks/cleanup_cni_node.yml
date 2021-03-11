@@ -1,0 +1,47 @@
+---
+- hosts: all
+  become: yes
+  vars_files:
+  - env_variables
+  tasks:
+  - name: Resetting kubeadm
+    shell: "[[ $(which kubeadm) ]] && kubeadm reset -f || echo kubeadm_not_installed "
+    register: output
+    
+  - name: Print output of kubeadm reset -f
+    debug:
+      msg: " => {{ output }}"
+
+  - name: UNINSTALL Docker
+    shell: |
+     yum erase docker-ce-3:19.03.15-3.el8 -y --nobest
+    register: output
+
+  - name: Print output of Resetting flannel and cni
+    debug:
+      msg: " => {{ output }}"
+
+  - name: UNINSTALL required packages
+    yum:
+     name: "{{ packages }}"
+     state: absent
+    register: output
+
+  - name: Print output of Resetting flannel and cni
+    debug:
+      msg: " => {{ output }}"
+
+  - name: Resetting flannel and cni
+    shell: |
+     rm -rf /var/lib/cni/ 
+     rm -rf /var/lib/kubelet/* 
+     rm -rf /etc/cni/ 
+     [[ $(ip link show | grep flannel.1) ]] && ip link del flannel.1 || echo no_flannel.1
+     [[ $(ip link show | grep docker0) ]] && ip link del docker0 || echo no_docker0
+     [[ $(ip link show | grep cni0) ]] && ip link del cni0 || echo no_cni0
+
+    register: output
+
+  - name: Print output of Resetting flannel and cni
+    debug:
+      msg: " => {{ output }}"

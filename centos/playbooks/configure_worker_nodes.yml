@@ -9,6 +9,6 @@
 
   - name: Joining worker nodes with kubernetes master
     shell: |
-     kubeadm reset -f
+     kubeadm  --v=5 reset -f
      cat join_token | tail -2 > out.sh
      sh out.sh
