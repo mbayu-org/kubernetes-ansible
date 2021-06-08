@@ -3,8 +3,9 @@ ansible-playbook playbooks/cleanup_cni_node.yml
 ansible-playbook setup_master_node.yml
 ansible-playbook setup_worker_nodes.yml
 
-# metallb 
 kubectl get nodes
+
+# metallb 
 helm install metallb bitnami/metallb --namespace kube-system --set configInline.address-pools[0].name=default --set configInline.address-pools[0].protocol=layer2 --set configInline.address-pools[0].addresses[0]=10.1.1.201-10.1.1.254
 
 # nfs storageClass, PVC und pv
@@ -40,7 +41,7 @@ spec:
       - "/bin/sh"
     args:
       - "-c"
-      - "touch /mnt/SUCCESS && exit 0 || exit 1"
+      - "touch /mnt/SUCCESSMMMMM && exit 0 || exit 1"
     volumeMounts:
       - name: nfs-pvc
         mountPath: "/mnt"
@@ -50,8 +51,10 @@ spec:
       persistentVolumeClaim:
         claimName: test-claim
 EOF
+exit 0
 
-# eck ELK
+
+# elk ELK
 kubectl apply -f https://download.elastic.co/downloads/eck/1.4.1/all-in-one.yaml
 
 cat <<EOF | kubectl apply -f -
