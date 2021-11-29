@@ -33,4 +33,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           sudo apt-get update
-          sudo apt-get install jq
+          sudo apt-get -y install jq
