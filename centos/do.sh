@@ -8,14 +8,14 @@ ssh 10.1.1.171 sudo cat /root/.kube/config>~/.kube/config
 kubectl get nodes -o wide
 
 # metallb 
-helm install metallb bitnami/metallb --namespace kube-system --set configInline.address-pools[0].name=default --set configInline.address-pools[0].protocol=layer2 --set configInline.address-pools[0].addresses[0]=10.1.1.201-10.1.1.254
+helm install metallb bitnami/metallb --namespace kube-system --set configInline.address-pools[0].name=default --set configInline.address-pools[0].protocol=layer2 --set configInline.address-pools[0].addresses[0]=10.1.1.180-10.1.1.2189
 
 # nfs storageClass, PVC und pv
 helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
     --set storageClass.defaultClass=true \
     --set replicaCount=3	\
-    --set nfs.server=10.1.1.148 \
-    --set nfs.path=/data/k8s
+    --set nfs.server=10.1.1.5 \
+    --set nfs.path=/nfsshare/k8s
 
 cat <<EOF | kubectl apply -f -
 kind: PersistentVolumeClaim
