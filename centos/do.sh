@@ -8,7 +8,7 @@ ssh 10.1.1.171 sudo cat /root/.kube/config>~/.kube/config
 kubectl get nodes -o wide
 
 # metallb 
-helm install metallb bitnami/metallb --namespace kube-system --set configInline.address-pools[0].name=default --set configInline.address-pools[0].protocol=layer2 --set configInline.address-pools[0].addresses[0]=10.1.1.180-10.1.1.2189
+helm install metallb bitnami/metallb --namespace kube-system --set configInline.address-pools[0].name=default --set configInline.address-pools[0].protocol=layer2 --set configInline.address-pools[0].addresses[0]=10.1.1.180-10.1.1.189
 
 # nfs storageClass, PVC und pv
 helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
