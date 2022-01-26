@@ -8,8 +8,8 @@ ssh 10.1.1.171 sudo cat /root/.kube/config>/home/mobile/.kube/config
 su - mobile -c "kubectl get nodes -o wide"
 
 #helm 3.
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh
+sudo curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+sudo chmod 700 get_helm.sh
 sudo ./get_helm.sh
 
 # metallb 
