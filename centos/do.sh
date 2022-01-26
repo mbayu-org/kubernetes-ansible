@@ -28,7 +28,7 @@ ansible-playbook setup_worker_nodes.yml
 
 ssh 10.1.1.171 sudo cat /root/.kube/config>/home/mobile/.kube/config
 
-su - mobile -c "kubectl get nodes -o wide"
+kubectl get nodes -o wide
 
 
 # metallb 
