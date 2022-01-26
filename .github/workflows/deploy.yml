@@ -32,8 +32,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: update and deploy
         run: |
-          echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu focal main">/etc/apt/sources.list.d/ansible.list
+          id
+          sudo echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu focal main">/etc/apt/sources.list.d/ansible.list
           sudo sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
           sudo apt update
           sudo apt install ansible
-          find . -name '*.sh' -exec bash -x {} \;
+          # find . -name '*.sh' -exec bash -x {} \;
+          cd centos && bash -x do.sh
