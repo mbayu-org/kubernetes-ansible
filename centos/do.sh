@@ -11,10 +11,10 @@ sudo qm start 175
 
 
 # install ansible
-sudo echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu focal main" | sudo tee -a /etc/apt/sources.list.d/ansible.list
-sudo sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
 sudo apt update
-sudo apt install -y ansible
+sudo apt-get install python3 python3-pip -y
+sudo pip3 install ansible
+ansible --version
 
 #helm 3.
 sudo curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
