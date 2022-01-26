@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #proxmox start control-plane and worker VMs
-sudo qm list | grep 17t
+sudo qm list | grep 17
 #control-plane
 sudo qm start 171
 
@@ -28,7 +28,7 @@ ansible-playbook playbooks/cleanup_cni_node.yml
 ansible-playbook setup_master_node.yml
 ansible-playbook setup_worker_nodes.yml
 
-ssh 10.1.1.171 sudo cat /root/.kube/config>/home/mobile/.kube/config
+ssh 10.1.1.171 sudo cat /root/.kube/config | sudo tee -a /home/mobile/.kube/config
 
 kubectl get nodes -o wide
 
