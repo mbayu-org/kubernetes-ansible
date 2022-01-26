@@ -1,3 +1,14 @@
+# install ansible
+sudo echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu focal main">/etc/apt/sources.list.d/ansible.list
+sudo sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
+sudo apt update
+sudo apt install -y ansible
+
+#helm 3.
+sudo curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+sudo chmod 700 get_helm.sh
+sudo ./get_helm.sh
+
 export ANSIBLE_NOCOWS=1
 ansible-playbook playbooks/cleanup_cni_node.yml
 ansible-playbook setup_master_node.yml
@@ -7,10 +18,6 @@ ssh 10.1.1.171 sudo cat /root/.kube/config>/home/mobile/.kube/config
 
 su - mobile -c "kubectl get nodes -o wide"
 
-#helm 3.
-sudo curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-sudo chmod 700 get_helm.sh
-sudo ./get_helm.sh
 
 # metallb 
 helm install metallb bitnami/metallb --namespace kube-system --set configInline.address-pools[0].name=default --set configInline.address-pools[0].protocol=layer2 --set configInline.address-pools[0].addresses[0]=10.1.1.180-10.1.1.189
