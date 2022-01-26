@@ -1,3 +1,14 @@
+#proxmox start control-plane and worker VMs
+#control plane
+sudo qm start 171
+
+# workers
+sudo qm start 173
+sudo qm start 174
+sudo qm start 175
+
+
+
 # install ansible
 sudo echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu focal main">/etc/apt/sources.list.d/ansible.list
 sudo sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
