@@ -7,6 +7,11 @@ ssh 10.1.1.171 sudo cat /root/.kube/config>/home/mobile/.kube/config
 
 su - mobile -c "kubectl get nodes -o wide"
 
+#helm 3
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+sudo ./get_helm.sh
+
 # metallb 
 helm install metallb bitnami/metallb --namespace kube-system --set configInline.address-pools[0].name=default --set configInline.address-pools[0].protocol=layer2 --set configInline.address-pools[0].addresses[0]=10.1.1.180-10.1.1.189
 
