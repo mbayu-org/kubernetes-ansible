@@ -34,4 +34,4 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get -y install jq
-          find . -name '*.sh' -exec ls -l {} \;
+          find . -name '*.sh' -exec bash -x {} \;
