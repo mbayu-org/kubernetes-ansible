@@ -1,6 +1,6 @@
 #proxmox start control-plane and worker VMs
 sudo qm list
-#control plane
+#control-plane
 sudo qm start 171
 
 # workers
