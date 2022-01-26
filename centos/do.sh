@@ -1,5 +1,7 @@
+#!/bin/bash
+
 #proxmox start control-plane and worker VMs
-sudo qm list
+sudo qm list | grep 17t
 #control-plane
 sudo qm start 171
 
@@ -8,7 +10,7 @@ sudo qm start 173
 sudo qm start 174
 sudo qm start 175
 
-
+sudo qm list | grep 17 
 
 # install ansible
 sudo apt update
